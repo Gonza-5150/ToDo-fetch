@@ -11,12 +11,18 @@ const Home = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setToDo((prev) => [...prev, tarea]);
-	setTarea("");
+	  setTarea("");
   };
   console.log(toDo);
   const elementDellete = (dIndex)=> {
 	setToDo(toDo.filter((e,i)=>i!=dIndex))
   }
+
+  function limpiar() {
+    document.getElementById("prueba").value = "";
+}
+
+  
 
   return (
     <div className="container">
@@ -24,7 +30,7 @@ const Home = () => {
         <h1 className="text-center">ToDo's</h1>
         <form onSubmit={onSubmit}>
           <div class="input-group d-flex justify-content-center">
-            <input type="text" onChange={(e) => setTarea(e.target.value)} />
+            <input type="text" id="prueba" placeholder="Tareas a realizar" onChange={(e) => setTarea(e.target.value)}/>
           </div>
           <div>
             {toDo.map((element, dIndex) => {
