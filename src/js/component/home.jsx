@@ -22,10 +22,6 @@ const Home = () => {
     setToDo(toDo.filter((e, i) => i != dIndex));
   };
 
-  function limpiar() {
-    document.getElementById("prueba").value = "";
-  }
-
   return (
     <div className="container">
       <div>
@@ -34,7 +30,6 @@ const Home = () => {
           <div className="input-group d-flex justify-content-center">
             <input
               type="text"
-              id="prueba"
               placeholder="Tareas a realizar"
               value={tarea}
               onChange={(e) => setTarea(e.target.value)}
