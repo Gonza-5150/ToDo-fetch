@@ -38,14 +38,14 @@ const Home = () => {
           <div>
             {toDo.map((element, dIndex) => {
               return (
-                <div className="d-flex justify-content-between my-3 col-4 mx-auto">
+                <div className="d-flex justify-content-between my-3 col-4 mx-auto shadow p-3 mb-5 bg-body rounded">
                   <p>{element}</p>
                   <button
                     type="button"
-                    className="btn btn-danger"
+                    className="btn btn-danger opacity-50"
                     onClick={() => elementDellete(dIndex)}
                   >
-                    borrar
+                    Borrar
                   </button>
                 </div>
               );
