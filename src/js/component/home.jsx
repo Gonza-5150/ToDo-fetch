@@ -14,12 +14,14 @@ const Home = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    sendTarea();
     if (tarea != "") {
-      setToDo((prev) => [...prev, tarea]);
+      setToDo((prev) => [...prev, {label:tarea, done: false}]);
       setTarea("");
     }
   };
 
+  //Mostrar las tareas
   const getTareas = () => {
     const requestOptions = {
       method: "GET",
@@ -31,8 +33,61 @@ const Home = () => {
       .catch((error) => console.log("error", error));
   };
 
+// Enviar tareas nuevas
+  function sendTarea() {
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		var raw = JSON.stringify([
+			...toDo,
+			{ label: tarea, done: false }
+		]);
+
+		var requestOptions = {
+			method: "PUT",
+			headers: myHeaders,
+			body: raw,
+			redirect: "follow"
+		};
+
+		fetch(
+			"https://assets.breatheco.de/apis/fake/todos/user/gonzalo",
+			requestOptions
+		)
+			.then(res => res.json())
+			.then(res => console.log(res))
+			.catch(error => console.log("error", error));
+	}
+
+  //Borrar tareas
+  const elementDellete = indexItem => {
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		let listaNueva = toDo.filter(
+			(todo, index) => index !== indexItem
+		);
+
+		var raw = JSON.stringify(listaNueva);
+
+		var requestOptions = {
+			method: "PUT",
+			headers: myHeaders,
+			body: raw,
+			redirect: "follow"
+		};
+
+		fetch(
+			"https://assets.breatheco.de/apis/fake/todos/user/gonzalo",
+			requestOptions
+		)
+			.then(res => res.json())
+			.then(res => getTareas())
+			.catch(error => console.log("error", error));
+	};
+
   console.log(toDo);
-  const elementDellete = (dIndex) => {
+  const delleteTarea = (dIndex) => {
     setToDo(toDo.filter((e, i) => i != dIndex));
   };
 
@@ -59,7 +114,8 @@ const Home = () => {
                     className="btn btn-danger opacity-50"
                     onClick={() => elementDellete(dIndex)}
                   >
-                    Borrar
+                    Borrar  
+                    <i className="fas fa-trash-alt" />
                   </button>
                 </div>
               );
