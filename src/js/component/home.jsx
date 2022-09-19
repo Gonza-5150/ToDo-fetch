@@ -104,14 +104,14 @@ const Home = () => {
           <div>
             {toDo.map((element, dIndex) => {
               return (
-                <div className="d-flex justify-content-between my-3 col-4 mx-auto shadow p-3 mb-5 bg-body rounded">
+                <div className="d-flex justify-content-between my-3 col-4 mx-auto shadow-lg p-3 mb-5 bg-body rounded">
                   <p>{element.label}</p>
                   <button
                     type="button"
                     className="btn btn-danger opacity-50"
                     onClick={() => elementDellete(dIndex)}
                   >
-                    Borrar  
+                      
                     <i className="fas fa-trash-alt" />
                   </button>
                 </div>
