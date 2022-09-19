@@ -64,11 +64,11 @@ const Home = () => {
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
-		let listaNueva = toDo.filter(
+		let newList = toDo.filter(
 			(todo, index) => index !== indexItem
 		);
 
-		var raw = JSON.stringify(listaNueva);
+		var raw = JSON.stringify(newList);
 
 		var requestOptions = {
 			method: "PUT",
@@ -87,14 +87,11 @@ const Home = () => {
 	};
 
   console.log(toDo);
-  const delleteTarea = (dIndex) => {
-    setToDo(toDo.filter((e, i) => i != dIndex));
-  };
 
   return (
     <div className="container">
       <div>
-        <h1 className="text-center">ToDo's</h1>
+        <h1 className="text-center fw-bold text-primary opacity-75">ToDo's</h1>
         <form onSubmit={onSubmit}>
           <div className="input-group d-flex justify-content-center">
             <input
