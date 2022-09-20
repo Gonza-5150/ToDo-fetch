@@ -34,7 +34,7 @@ const Home = () => {
   };
 
 // Enviar tareas nuevas
-  function sendTarea() {
+  const sendTarea = () => {
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
